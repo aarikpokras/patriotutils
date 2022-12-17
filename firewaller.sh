@@ -1,3 +1,4 @@
+#!/bin/sh
 read -p 'no> ' nono
 sudo apt install gufw
 printf "\033[1;32m" # Green
