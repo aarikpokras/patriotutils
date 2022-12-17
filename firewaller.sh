@@ -6,3 +6,4 @@ printf "\033[1;33mPlease edit the common-password file and the login.defs file.\
 sudo apt install firewalld
 systemctl start firewalld && systemctl enable firewalld
 grep -E "PASS_MIN_DAYS|PASS_MAX_DAYS" /etc/login.defs
+sudo nano /etc/login.defs
