@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo apt install gufw
+sudo apt install ufw
 printf "\033[1;32m" # Green
 sudo ufw enable
 printf "\033[1;33mPlease edit the common-password file and the login.defs file.\n"
