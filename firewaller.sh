@@ -1,4 +1,5 @@
 #!/bin/sh
+# Not recommended for use. Please use the other files in this repo.
 sudo apt install ufw
 printf "\033[1;32m" # Green
 sudo ufw enable
