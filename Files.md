@@ -19,7 +19,7 @@
             <td>User list</td>
         </tr>
         <tr>
-            <td>Sudoers safe-edit file</td>
+            <td>Sudoers safe-to-edit file</td>
             <td>/etc/sudoers.tmp (Edit with <code>visudo</code>)</td>
         </tr>
     </tbody>
