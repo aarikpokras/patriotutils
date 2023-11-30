@@ -1,0 +1,5 @@
+FILES
+
+/etc/lightdm/lightdm.conf       | lightdm config w/ passwords, etc.
+/etc/passwd			| all users
+/etc/login.defs		 	| login defaults

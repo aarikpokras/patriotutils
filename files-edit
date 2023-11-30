@@ -1,0 +1,44 @@
+#!/bin/bash
+if [[ "$(uname -a)" =~ "Darwin" ]]; then echo Please run on linux - the actions in this script aren\'t supported by macOS.
+else
+printf "\e[1;33mPlease get your password ready, you will need sudo permission soon\e[0m\n"
+sudo sleep 3
+ops=("login.defs" "/etc/passwd" "lightdm.conf" "Search_for_prohibited_files" "Secure_firewall" "clamtk")
+PS3="Action: "
+select option in ${ops[@]}; do
+  case $option in
+    "login.defs")
+      printf "\e[1;31mWarning: using sed to replace bad values. ^C now to stop.\n\e[0m"
+      sleep 2
+      sudo sed -i 's/FAILLOG_ENAB.*/FAILLOG_ENAB yes/g' /etc/login.defs
+      sudo sed -i 's/LOG_UNKFAIL_ENAB.*/LOG_UNKFAIL_ENAB yes/g' /etc/login.defs
+      sudo sed -i 's/SYSLOG_SU_ENAB.*/SYSLOG_SU_ENAB yes/g' /etc/login.defs
+      sudo sed -i 's/SYSLOG_SG_ENAB.*/SYSLOG_SG_ENAB yes/g' /etc/login.defs
+      sudo sed -i 's/PASS_MAX_DAYS.*/PASS_MAX_DAYS 90/g' /etc/login.defs
+      sudo sed -i 's/PASS_MIN_DAYS.*/PASS_MIN_DAYS 10/g' /etc/login.defs
+      sudo sed -i 's/PASS_WARN_AGE.*/PASS_WARN_AGE 7/g' /etc/login.defs
+      sudo nano /etc/login.defs
+      ;;
+    "/etc/passwd")
+      cat /etc/passwd | sed 's/:.*//g' | less
+      ;;
+    "lightdm.conf")
+      sudo nano /etc/lightdm/lightdm.conf || sudo nano /usr/share/lightdm/lightdm.conf/50-ubuntu.conf
+      ;;
+    "Search_for_prohibited_files")
+      sudo find / -name "*.mp3" -print
+      ;;
+    "Secure_firewall")
+      sudo apt install ufw || sudo yum install ufw
+      sudo ufw enable
+      ufw status
+      ;;
+    "clamtk")
+      sudo apt install clamtk
+      clamtk
+      ;;
+    *)
+      printf "\e[1;33mInvalid option.\e[0m\n"
+  esac
+done
+fi
